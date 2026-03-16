@@ -1,0 +1,17 @@
+#
+# gsa_eval.yaml
+#
+model: gsa
+model_args:
+  model_name_or_path: ../GSA1-Residual-64/checkpoint-45000
+  base_model_path: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+  granu: '[1]'
+  local: '[0.0, 1.0]'
+  prefill_weights: '[[1, 1]]'
+  decode_weights: '[[1, 1]]'
+  cache_type: Residual
+  cache_size: 16
+tasks:
+  - arc_easy
+device: cuda
+output_path: ../GSA1-Residual-64/trained_results/GSA1_arc_easy_Residual-64_checkpoint-45000.json
