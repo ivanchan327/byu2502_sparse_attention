@@ -1,0 +1,72 @@
+Ensure that cache_size is 256!!!
+
+python -m lm_eval --model gsa --model_args "model_name_or_path=../GSA1-Residual-64/checkpoint-45000,base_model_path=TinyLlama/TinyLlama-1.1B-Chat-v1.0" --tasks arc_easy --device cuda --output_path ../GSA1-Residual-64/trained_results/GSA1_arc_easy_Residual-64_checkpoint-45000.json
+
+python -m lm_eval --model gsa --model_args "model_name_or_path=../GSA1-Residual-64/checkpoint-60000,base_model_path=TinyLlama/TinyLlama-1.1B-Chat-v1.0" --tasks arc_easy --device cuda --output_path ../GSA1-Residual-64/trained_results/GSA1_arc_easy_Residual-64_checkpoint-60000.json
+
+python -m lm_eval --model gsa --model_args "model_name_or_path=../TinyLlama/GSA1_Residual_64/Ver_1/checkpoint-103520,base_model_path=TinyLlama/TinyLlama-1.1B-Chat-v1.0" --tasks arc_easy --device cuda --output_path ../TinyLlama/GSA1_Residual_64/Ver_1/trained_results/GSA1_arc_easy_Residual_64_checkpoint-103520.json
+
+python -m lm_eval --model gsa --model_args "model_name_or_path=../Llama3B/GSA1_Residual_64/Ver_1/checkpoint-51760,base_model_path=meta-llama/Llama-3.2-3B" --tasks arc_easy --device cuda --output_path ../Llama3B/GSA1_Residual_64/trained_results/Llama3B_GSA1_arc_easy_Residual-64_checkpoint-51760.json
+
+Without checkpoint:
+python -m lm_eval --model gsa --model_args "base_model_path=TinyLlama/TinyLlama-1.1B-Chat-v1.0,load_checkpoint=false" --tasks arc_easy --device cuda --output_path ./baseline_results.json
+
+python -m lm_eval --model gsa --model_args "base_model_path=meta-llama/Llama-3.2-3B,load_checkpoint=false" --tasks arc_easy --device cuda --output_path ./Llmam3B_no_checkpoint_results.json
+
+python -m lm_eval --model gsa --model_args "base_model_path=TinyLlama/TinyLlama-1.1B-Chat-v1.0,load_checkpoint=false" --tasks arc_easy --device cuda --output_path ./TinyLlama_Llama_results.json
+
+
+
+TinyLlama1-1.1B
+Standard Llama:
+python -m lm_eval --model gsa --model_args "base_model_path=TinyLlama/TinyLlama-1.1B-Chat-v1.0,model_type=Llama" --tasks arc_easy --device cuda --output_path ./results/TinyLlama_Standard_arc_easy.json
+
+GSA1 Untrained:
+python -m lm_eval --model gsa --model_args "base_model_path=TinyLlama/TinyLlama-1.1B-Chat-v1.0,model_type=GSA1,load_checkpoint=false" --tasks arc_easy --device cuda --output_path ./results/TinyLlama_GSA-Untrained_arc_easy.json
+
+GSA1 Trained:
+python -m lm_eval --model gsa --model_args "base_model_path=TinyLlama/TinyLlama-1.1B-Chat-v1.0,model_type=GSA1,model_name_or_path=../TinyLlama/GSA1_Residual_64/Ver_1/checkpoint-103520" --tasks arc_easy --device cuda --output_path ./results/TinyLlama_GSA-Trained_arc_easy.json
+
+Llama 3.2 3B:
+Standard Llama:
+python -m lm_eval --model gsa --model_args "base_model_path=meta-llama/Llama-3.2-3B,model_type=Llama" --tasks arc_easy --device cuda --output_path ./results/Llama3B_Standard_arc_easy.json
+
+Llama3B Untrained:
+python -m lm_eval --model gsa --model_args "base_model_path=meta-llama/Llama-3.2-3B,model_type=GSA1,load_checkpoint=false" --tasks arc_easy --device cuda --output_path ./results/Llama3B_GSA-Untrained_arc_easy.json
+
+Llama3B Trained:
+python -m lm_eval --model gsa --model_args "base_model_path=meta-llama/Llama-3.2-3B,model_type=GSA1,model_name_or_path=../Llama3B/GSA1_Residual_64/Ver_1/checkpoint-51760" --tasks arc_easy --device cuda --output_path ./results/Llama3B_GSA-Trained_arc_easy.json
+
+
+
+python -m lm_eval --model gsa --model_args "base_model_path=TinyLlama/TinyLlama-1.1B-Chat-v1.0,model_type=GSA1,model_name_or_path=../TinyLlama/GSA1_ResidualwithBlock_64/Ver_1/checkpoint-5000" --tasks arc_easy --device cuda --output_path ./results/TinyLlama_GSA_with_block_Trained_arc_easy.json
+
+
+
+
+
+Backup:
+
+python -m lm_eval --model gsa --model_args "model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0,granularity=[1],locality=[0.0 1.0],prefill_base_weights=[2 0.5],base_weights=[2 0.5],cache_size=256,start_size=4,recent_size=1024,dtype=bf16,batch_size=16,normalize_rows=false" --tasks arc_easy,arc_challenge,hellaswag,winogrande --apply_chat_template --device cuda --output_path new_results/gsa_mc.json --verbosity INFO
+
+python -m lm_eval --model gsa --model_args "model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0,granularity=[1],locality=[0.0 1.0],prefill_base_weights=[2 0.5],base_weights=[2 0.5],cache_size=256,start_size=4,recent_size=1024,dtype=bf16,batch_size=16,normalize_rows=false" --tasks arc_easy --apply_chat_template --device cuda --output_path new_results/gsa_arc_easy.json --verbosity INFO
+
+python -m lm_eval --model gsa --model_args "model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0,granularity=[1],locality=[0.0 1.0],prefill_base_weights=[2 0.5],base_weights=[2 0.5],cache_size=256,start_size=4,recent_size=1024,dtype=bf16,batch_size=16,normalize_rows=false" --tasks arc_challenge --apply_chat_template --device cuda --output_path new_results/gsa_arc_challenge.json --verbosity INFO
+
+python -m lm_eval --model gsa --model_args "model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0,granularity=[1],locality=[0.0 1.0],prefill_base_weights=[2 0.5],base_weights=[2 0.5],cache_size=256,start_size=4,recent_size=1024,dtype=bf16,batch_size=16,normalize_rows=false" --tasks hellaswag --apply_chat_template --device cuda --output_path new_results/gsa_hellaswag.json --verbosity INFO
+
+python -m lm_eval --model gsa --model_args "model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0,granularity=[1],locality=[0.0 1.0],prefill_base_weights=[2 0.5],base_weights=[2 0.5],cache_size=256,start_size=4,recent_size=1024,dtype=bf16,batch_size=16,normalize_rows=false" --tasks winogrande --apply_chat_template --device cuda --output_path new_results/gsa_winogrande.json --verbosity INFO
+
+python -m lm_eval --model gsa --model_args "model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0,granularity=[1],locality=[0.0 1.0],prefill_base_weights=[2 0.5],base_weights=[2 0.5],cache_size=1000,start_size=4,recent_size=1024,dtype=bf16,batch_size=16,normalize_rows=false" --tasks truthfulqa --apply_chat_template --gen_kwargs '{"max_gen_toks":128,"until":["\n\n","</s>"],"do_sample":false,"temperature":0}' --device cuda --output_path new_results/gsa_truthfulqa.json --verbosity INFO
+
+python -m lm_eval --model gsa --model_args "model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0,granularity=[1],locality=[0.0 1.0],prefill_base_weights=[1 1],base_weights=[1 1],cache_size=256,start_size=4,recent_size=1024,dtype=bf16,batch_size=16,normalize_rows=false" --tasks arc_easy,arc_challenge,hellaswag,winogrande --apply_chat_template --device cuda --output_path new_results/h2o_mc.json --verbosity INFO
+
+python -m lm_eval --model gsa --model_args "model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0,granularity=[1],locality=[0.0 1.0],prefill_base_weights=[1 1],base_weights=[1 1],cache_size=256,start_size=4,recent_size=1024,dtype=bf16,batch_size=16,normalize_rows=false" --tasks arc_easy --apply_chat_template --device cuda --output_path new_results/h2o_arc_easy.json --verbosity INFO
+
+python -m lm_eval --model gsa --model_args "model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0,granularity=[1],locality=[0.0 1.0],prefill_base_weights=[1 1],base_weights=[1 1],cache_size=256,start_size=4,recent_size=1024,dtype=bf16,batch_size=16,normalize_rows=false" --tasks arc_challenge --apply_chat_template --device cuda --output_path new_results/h2o_arc_challenge.json --verbosity INFO
+
+python -m lm_eval --model gsa --model_args "model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0,granularity=[1],locality=[0.0 1.0],prefill_base_weights=[1 1],base_weights=[1 1],cache_size=256,start_size=4,recent_size=1024,dtype=bf16,batch_size=16,normalize_rows=false" --tasks hellaswag --apply_chat_template --device cuda --output_path new_results/h2o_hellaswag.json --verbosity INFO
+
+python -m lm_eval --model gsa --model_args "model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0,granularity=[1],locality=[0.0 1.0],prefill_base_weights=[1 1],base_weights=[1 1],cache_size=256,start_size=4,recent_size=1024,dtype=bf16,batch_size=16,normalize_rows=false" --tasks winogrande --apply_chat_template --device cuda --output_path new_results/h2o_winogrande.json --verbosity INFO
+
+python -m lm_eval --model gsa --model_args "model_name=TinyLlama/TinyLlama-1.1B-Chat-v1.0,granularity=[1],locality=[0.0 1.0],prefill_base_weights=[1 1],base_weights=[1 1],cache_size=1000,start_size=4,recent_size=1024,dtype=bf16,batch_size=16,normalize_rows=false" --tasks truthfulqa --apply_chat_template --gen_kwargs '{"max_gen_toks":128,"until":["\n\n","</s>"],"do_sample":false,"temperature":0}' --device cuda --output_path new_results/h2o_truthfulqa.json --verbosity INFO
