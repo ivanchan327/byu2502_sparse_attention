@@ -1,0 +1,11 @@
+[
+    {
+        "timestamp": "2026-04-14T00:20:25.739625",
+        "prompt_length": 4096,
+        "generation_length": 4,
+        "batch_size": 1,
+        "throughput": 0.9644971387656435,
+        "latency": 4.148938258488973,
+        "peak_memory_gb": 10.142145024
+    }
+]
