@@ -1,0 +1,103 @@
+{
+  "results": {
+    "xsum": {
+      "alias": "xsum",
+      "rouge,none": 0.05618676259974085,
+      "rouge_stderr,none": "N/A"
+    }
+  },
+  "group_subtasks": {
+    "xsum": []
+  },
+  "configs": {
+    "xsum": {
+      "task": "xsum",
+      "dataset_name": "card=cards.xsum,template=templates.summarization.abstractive.full",
+      "unsafe_code": false,
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 0,
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "\n\n"
+        ],
+        "do_sample": false,
+        "temperature": 0,
+        "max_new_tokens": 128
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0
+      }
+    }
+  },
+  "versions": {
+    "xsum": 0
+  },
+  "n-shot": {
+    "xsum": 0
+  },
+  "higher_is_better": {
+    "xsum": {
+      "rouge": true
+    }
+  },
+  "n-samples": {
+    "xsum": {
+      "original": 11334,
+      "effective": 10
+    }
+  },
+  "config": {
+    "model": "gsa",
+    "model_args": "base_model_path=TinyLlama/TinyLlama-1.1B-Chat-v1.0,model_type=GSA1,model_name_or_path=../TinyLlama_fp32/GSA1_ResidualwithBlock_64/Ver_1/checkpoint-10000,granu=1,local=0.0|1.0,vector_size=1|4|64,cache_type=ResidualwithBlock,cache_size=64,attn_size=64,base_weights=0|0,dtype=float32",
+    "batch_size": 1,
+    "batch_sizes": [],
+    "device": "cuda",
+    "use_cache": null,
+    "limit": 10.0,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": {
+      "max_new_tokens": 128
+    },
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": "83e7181",
+  "date": 1776173721.7783685,
+  "pretty_env_info": "PyTorch version: 2.9.0+cu128\nIs debug build: False\nCUDA used to build PyTorch: 12.8\nROCM used to build PyTorch: N/A\n\nOS: Microsoft Windows 11 專業版 (10.0.26200 64 位元)\nGCC version: Could not collect\nClang version: Could not collect\nCMake version: Could not collect\nLibc version: N/A\n\nPython version: 3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)] (64-bit runtime)\nPython platform: Windows-11-10.0.26200-SP0\nIs CUDA available: True\nCUDA runtime version: 12.8.61\r\nCUDA_MODULE_LOADING set to: \nGPU models and configuration: GPU 0: NVIDIA GeForce RTX 4070 SUPER\nNvidia driver version: 591.86\ncuDNN version: Could not collect\nIs XPU available: False\nHIP runtime version: N/A\nMIOpen runtime version: N/A\nIs XNNPACK available: True\n\nCPU:\nName: AMD Ryzen 5 7600X 6-Core Processor             \nManufacturer: AuthenticAMD\nFamily: 107\nArchitecture: 9\nProcessorType: 3\nDeviceID: CPU0\nCurrentClockSpeed: 4701\nMaxClockSpeed: 4701\nL2CacheSize: 6144\nL2CacheSpeed: None\nRevision: 24834\n\nVersions of relevant libraries:\n[pip3] numpy==2.3.4\n[pip3] torch==2.9.0+cu128\n[pip3] torchvision==0.24.0+cu128\n[conda] Could not collect",
+  "transformers_version": "4.57.1",
+  "lm_eval_version": "0.4.9.1",
+  "upper_git_hash": "83e718137c95e1f0550c8b47567b0a7786aacc62",
+  "tokenizer_pad_token": [
+    "</s>",
+    "2"
+  ],
+  "tokenizer_eos_token": [
+    "</s>",
+    "2"
+  ],
+  "tokenizer_bos_token": [
+    "<s>",
+    "1"
+  ],
+  "eot_token_id": 2,
+  "max_length": 2048,
+  "task_hashes": {},
+  "model_source": "gsa",
+  "model_name": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "model_name_sanitized": "TinyLlama__TinyLlama-1.1B-Chat-v1.0",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": false,
+  "chat_template": null,
+  "chat_template_sha": null,
+  "start_time": 9938.2269081,
+  "end_time": 10020.7821702,
+  "total_evaluation_time_seconds": "82.55526210000062"
+}
